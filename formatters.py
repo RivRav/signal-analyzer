@@ -1,4 +1,16 @@
 def format_size(size_bytes):
+    """
+        - format a size into a readable string
+
+        @Parameters
+        size_bytes : int or float
+            - the size value in bytes
+
+        @Returns
+        str
+            - the size given as text
+    """
+
     if size_bytes < 1024:
         return f"{size_bytes} B"
     elif size_bytes < 1024**2:
@@ -10,6 +22,17 @@ def format_size(size_bytes):
 
 
 def format_time(seconds):
+    """
+        - format a duration into a readable string
+
+        @Parameters
+        seconds : float
+            - time in seconds
+
+        @Returns
+        str
+            - a formatted time string
+    """
     if seconds < 1:
         return f"{seconds * 1000:.1f} ms"
     elif seconds < 60:
