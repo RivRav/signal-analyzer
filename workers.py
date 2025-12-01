@@ -2,6 +2,7 @@ from PySide6.QtCore import QObject, Signal
 import numpy as np
 from algorithms import find_peaks, compute_baseline
 
+
 class PeakWorker(QObject):
     """- a class responsible for running baseline calculation and peak detection in a background thread (both signals separately and gives results back to the GUI when done)"""
     
@@ -45,7 +46,7 @@ class PeakWorker(QObject):
             full_baseline : np.ndarray
                 - baseline values aligned with the full signal length
         """
-                
+
         signal_length = len(signal)
 
         baselines = []

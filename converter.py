@@ -5,7 +5,7 @@ import numpy as np
 
 def csv_to_bin(file_path: str, save_path: str = None):
     """
-        - convert a CSV file into an interleaved binary .bin file for the softare to load
+        - convert a CSV file into an interleaved binary .bin file for the software to load
 
         @Parameters
         file_path : str

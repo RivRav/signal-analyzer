@@ -119,7 +119,7 @@ class SignalAnalyzer(MainWindow):
             self,
             "Open Data File",
             start_dir,
-            "Binary files (*.bin)"
+            "Data files (*.bin *.csv)"
         )
 
         if not file_path:
@@ -154,11 +154,13 @@ class SignalAnalyzer(MainWindow):
                 number_of_points = len(self.i)
                 self.signal_1 = self.i["adc1"].values
                 self.signal_2 = self.i["adc2"].values
+
             # load binary with memmap
             elif file_type == ".bin":
 
                 number_of_samples = file_size // (2 * np.dtype(np.int16).itemsize)
                 raw_data = np.memmap(file_path, dtype=np.int16, mode="r", shape=(number_of_samples, 2))
+                raw_data = np.array(raw_data, copy=True)
                 self.signal_1 = raw_data[:, 0]
                 self.signal_2 = raw_data[:, 1]
                 number_of_points = len(raw_data)
@@ -414,7 +416,7 @@ class SignalAnalyzer(MainWindow):
         ax.set_ylabel("Response")
         ax.legend()
 
-        # redreaw canvas
+        # redraw canvas
         self.canvas.draw()
 
     def on_slider_change(self, values):

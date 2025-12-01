@@ -30,9 +30,9 @@ def find_peaks(x: np.ndarray,
                section_sd: float = None,
                section_mean: float = None,
                signal_total_sd: float = None,
-               distance: int = 15000,
+               distance: int = 5000,
                prominence: float = 30,
-               local_dist: int = 20000) -> tuple[np.ndarray, np.ndarray]:
+               local_dist: int = 80000) -> tuple[np.ndarray, np.ndarray]:
     """
     - detect and classify peaks in a one-dimensional signal
     - the function first uses scipy.signal.find_peaks to find peaks above a threshold based on baseline and total standard deviation. Each peak is then classified as either a tumor peak or a water peak according to its behaviour
@@ -74,7 +74,7 @@ def find_peaks(x: np.ndarray,
         #use scipy's find_peaks to get init peaks
         peaks, properties = scipy_find_peaks(
             x,
-            height=baseline + signal_total_sd,
+            height=baseline + 0.7 * signal_total_sd,
             distance=distance,
             prominence=prominence
         )
